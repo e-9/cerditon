@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cerdoton</title>
+
+  <!-- Bootstrap -->
+  {% load staticfiles %}
+  <link href="{% static "cerdoton_app/bootstrap-3.3.2-dist/css/bootstrap.min.css" %}" rel="stylesheet"/>
+  <link href="{% static "cerdoton_app/css/cerdoton.css" %}" rel="stylesheet"/>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <link href='http://fonts.googleapis.com/css?family=Stalemate' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container">
+      <div id="crdtn-head" class="row">
+        <div class="col-xs-12">
+          <h1 class="text-center">Cerdot&oacute;n </h1>
+          <h1 class="text-center"><small>Por un puerco m&aacute;s sano.</small></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="crdtn-sec1">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>
+              <i></i>
+              <span>¿Qu&eacute; es?</span>
+            </h2>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <p>En una campaña en contra del "bullying" por sobrepeso, &eacute;sta fue la mejor forma de la peor idea que tuvimos para combatirlo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="crdtn-sec2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>
+            <i></i>
+            <span>¿C&oacute;mo funciona?</span>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <p>Las reglas <del><smal>son muy sencillas</small></del> no son muy sencillas:</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-left">
+          <ul class="list-group">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="crdtn-contest">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>
+            <i></i>
+            <span><span class="crdtn-Vintage">Pork</span>ticipantes</span>
+          </h2>
+        </div>
+      </div>
+      <div class="row crdtn-vintage-pad">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="row">
+            {% if pigs_list %}
+              {% for pig in pigs_list %}
+                <div class="col-md-6">
+                  <div class="row text-left crdtn-row-pad">
+                    <div class="col-md-4">
+                      {% load staticfiles %}
+                      <img src="{% static "cerdoton_app/img/avatar.jpg" %}" class="img-rounded" alt"Cuiiii">
+                    </div>
+                    <div class="col-md-7 col-md-offset-1">
+                      <div class="row">
+                        <div class="col-md-12">
+                          Soy <strong>{{ pig.Name }}</strong>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          tengo <strong>{{ pig.Age }}</strong> a&ntilde;os
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          y mido <strong>{{ pig.Height }} cm</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <p>Not available.</p>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="crdtn-result">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>
+            <i></i>
+            <span>Los resultados</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  {% load staticfiles %}
+  <script src="{% static "cerdoton_app/bootstrap-3.3.2-dist/js/bootstrap.min.js" %}" />
+</body>
+</html>
