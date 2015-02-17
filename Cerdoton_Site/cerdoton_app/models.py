@@ -20,4 +20,4 @@ class PigStatus(models.Model):
     ideal_weight = models.FloatField('Peso ideal', default=0.0)
     week = models.IntegerField('Semana', default=0)
     def __str__(self):
-        return self.weight
+        return str(self.weight)
