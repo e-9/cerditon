@@ -1,20 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from cerdoton_app.models import PigData, PigStatus
+from cerdoton_app.models import PigData, PigStatus, MasterPig
 
 def index(request):
     pigs_list = PigData.objects.all()
-    context = {'pigs_list': pigs_list}
-
-    print ('Prueba' + str(PigData.objects.all()[0].pigstatus_set.all().count()))
-    tst = PigData.objects.all()
-    tststat = tst[0].pigstatus_set.all()
-    print (str(tststat[0].weight))
-    print (str(tststat[0].fat_percentage))
-    print (str(tststat[0].total_body_water))
-    print (str(tststat[0].kilocalories))
-
+    context = {'pigs_list': masterPigList(pigs_list)}
     return render(request, 'cerdoton_app/index.html', context)
 
 def generalData(request, pig_id):
@@ -22,3 +13,44 @@ def generalData(request, pig_id):
 
 def status(request, pig_id):
     return HttpResponse("Details from pig %s." % pig_id)
+
+
+
+def diffStatus(a, b):
+    return a - b
+
+def masterPigList(pigs_list):
+    result = []
+
+    for pig in pigs_list:
+        master_pig = MasterPig()
+        pig_status = pig.pigstatus_set.all()
+        cnt = pig_status.count()
+
+        master_pig.name = pig.Name
+        master_pig.age = pig.Age
+        master_pig.height = pig.Height
+
+        if cnt > 0:
+            master_pig.weight = pig_status[cnt-1].weight
+            master_pig.fat_percentage = pig_status[cnt-1].fat_percentage
+            master_pig.total_body_water = pig_status[cnt-1].total_body_water
+            master_pig.body_mass_index = pig_status[cnt-1].body_mass_index
+            master_pig.bone_percentage = pig_status[cnt-1].bone_percentage
+            master_pig.muscle_percentage = pig_status[cnt-1].muscle_percentage
+            master_pig.kilocalories = pig_status[cnt-1].kilocalories
+            master_pig.week = pig_status[cnt-1].week
+            if cnt > 1:
+                stst2 = pig_status[cnt-2]
+                stst1 = pig_status[cnt-1]
+                master_pig.weight_diff = diffStatus(stst2.weight, stst1.weight)
+                master_pig.fat_percentage_diff = diffStatus(stst2.fat_percentage, stst1.fat_percentage)
+                master_pig.total_body_water_diff = diffStatus(stst2.total_body_water, stst1.total_body_water)
+                master_pig.body_mass_index_diff = diffStatus(stst2.body_mass_index, stst1.body_mass_index)
+                master_pig.bone_percentage_diff = diffStatus(stst2.bone_percentage, stst1.bone_percentage)
+                master_pig.muscle_percentage_diff = diffStatus(stst2.muscle_percentage, stst1.muscle_percentage)
+                master_pig.kilocalories_diff = diffStatus(stst2.kilocalories, stst1.kilocalories)
+
+        result.append(master_pig)
+
+    return result

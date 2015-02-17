@@ -21,3 +21,26 @@ class PigStatus(models.Model):
     week = models.IntegerField('Semana', default=0)
     def __str__(self):
         return str(self.weight)
+
+class MasterPig():
+    name = ''
+    age = 0
+    height = 0.0
+    weight = 0.0
+    weight_diff = 0.0
+    fat_percentage = 0.0
+    fat_percentage_diff = 0.0
+    total_body_water = 0.0
+    total_body_water_diff = 0.0
+    body_mass_index = 0.0
+    body_mass_index_diff = 0.0
+    bone_percentage = 0.0
+    bone_percentage_diff = 0.0
+    muscle_percentage = 0.0
+    muscle_percentage_diff = 0.0
+    kilocalories = 0.0
+    kilocalories_diff = 0.0
+    week = 0
+
+    def __init__(self):
+        self.data = []
