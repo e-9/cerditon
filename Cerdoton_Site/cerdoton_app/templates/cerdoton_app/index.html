@@ -96,7 +96,6 @@
                 <div class="col-md-4">
                   <div class="row crdtn-row-pad">
                     <div class="col-md-4">
-                      {% load staticfiles %}
                       <img src="{% static "cerdoton_app/img/avatar.jpg" %}" class="img-rounded" alt"Cuiiii">
                     </div>
                     <div class="col-md-6 col-md-offset-1 text-left">
@@ -135,66 +134,123 @@
         <div class="col-md-12">
           <h2>
             <i></i>
-            <span>Los resultados</span>
+            <span>El seguimiento</span>
           </h2>
         </div>
       </div>
-      <div class="row">
+      <div class="row crdtn-row-pad">
         <div class="col-md-12">
           <div class="table-responsive">
             <table class="table table-hover">
               <thead>
                 <tr>
 
-                  <th>Porkticipante</th>
-                  <th>Estado Incial</th>
-                  <th>Semana 1</th>
-                  <th>Semana 2</th>
-                  <th>Semana 3</th>
-                  <th>Semana 4</th>
-                  <th>Semana 5</th>
-                  <th>Semana 6</th>
-                  <th>Semana 7</th>
-                  <th>Semana 8</th>
+                  <th class="text-center">Porkticipante</th>
+                  <th class="text-left">Peso</th>
+                  <th class="text-left">Grasa</th>
+                  <th class="text-left">Agua</th>
+                  <th class="text-left">Masa Muscular</th>
+                  <th class="text-left">Masa Osea</th>
+                  <th class="text-left">Masa Corporal</th>
+                  <th class="text-left">Kilocalorias</th>
 
                 </tr>
               </thead>
               <tbody>
 
-                <tr>
-                  <td class="text-left">Abraham</td>
-                  <td>
-                    <div class="row">
-                      <div class="col-md-5 text-left">Peso</div>
-                      <div class="col-md-4 text-right"><strong>74.200</strong></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5 text-left">Grasa</div>
-                      <div class="col-md-4 text-right"><strong>1200%</strong></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5 text-left">Agua</div>
-                      <div class="col-md-4 text-right"><strong>1250%</strong></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5 text-left">Muscular</div>
-                      <div class="col-md-4 text-right"><strong>1200%</strong></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5 text-left">Osea</div>
-                      <div class="col-md-4 text-right"><strong>1200%</strong></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5 text-left">Corporal</div>
-                      <div class="col-md-4 text-right"><strong>1200%</strong></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5 text-left">Kilocalorias</div>
-                      <div class="col-md-4 text-right"><strong>1200%</strong></div>
-                    </div>
-                  </td>
-
-                </tr>
+                {% if pigs_list %}
+                  {% for pig in pigs_list %}
+                    <tr>
+                      <td class="text-left">{{ pig.name }}</td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.weight }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.weight_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.weight_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.weight_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.fat_percentage }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.fat_percentage_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.fat_percentage_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.fat_percentage_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.total_body_water }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.total_body_water_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.total_body_water_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.total_body_water_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.body_mass_index }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.body_mass_index_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.body_mass_index_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.body_mass_index_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.bone_percentage }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.bone_percentage_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.bone_percentage_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.bone_percentage_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.muscle_percentage }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.muscle_percentage_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.muscle_percentage_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.muscle_percentage_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.kilocalories }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.kilocalories_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.kilocalories_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.kilocalories_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                {% else %}
+                  <p>Not available.</p>
+                {% endif %}
 
               </tbody>
             </table>
@@ -203,12 +259,29 @@
       </div>
     </div>
   </section>
-
+  <section id="crdtn-contest">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>
+            <i></i>
+            <span>Detalles</span>
+          </h2>
+        </div>
+      </div>
+      <div class="row crdtn-row-pad">
+        <div class="col-md-12">
+          <canvas id="myChart" width="900" height="400"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  {% load staticfiles %}
-  <script src="{% static "cerdoton_app/bootstrap-3.3.2-dist/js/bootstrap.min.js" %}" />
+  <script src="{% static "cerdoton_app/bootstrap-3.3.2-dist/js/bootstrap.min.js" %}" ></script>
+  <script src="{% static "cerdoton_app/js/Chart.min.js" %}" ></script>
+  <script src="{% static "cerdoton_app/js/cerdoton.js" %}" ></script>
 </body>
 </html>
