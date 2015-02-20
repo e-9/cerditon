@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-  $.get('/cerdoton/graphData/', function(data) {
+  $.get('/cerdoton/graphData/fat/', function(data) {
         console.log(data);
 
         var data = {
@@ -9,7 +9,7 @@ $( document ).ready(function() {
         };
 
         var ctx = $("#myChart").get(0).getContext("2d");
-        var myLineChart = new Chart(ctx).Line(data);
+        var myLineChart = new Chart(ctx).Line(data, {datasetFill : false});
 
   });
 });

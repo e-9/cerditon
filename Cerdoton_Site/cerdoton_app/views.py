@@ -16,7 +16,7 @@ def generalData(request, pig_id):
 def status(request, pig_id):
     return HttpResponse("Details from pig %s." % pig_id)
 
-def graphData(request):
+def graphDataFat(request):
 
     if request.is_ajax():
 
@@ -27,8 +27,8 @@ def graphData(request):
 
             response_data = {}
             response_data['label'] = pig.Name
-            response_data['fillColor'] = 'rgba(220,220,220,0.2)'
-            response_data['strokeColor'] = 'rgba(220,220,220,1)'
+            response_data['fillColor'] = colorGraph(pig.Name)[0]
+            response_data['strokeColor'] = colorGraph(pig.Name)[1]
             response_data['pointColor'] = 'rgba(220,220,220,1)'
             response_data['pointStrokeColor'] = '#fff'
             response_data['pointHighlightFill'] = '#fff'
@@ -49,6 +49,15 @@ def graphData(request):
     return render(request, 'index.html', {'user': ''})
 
 
+def colorGraph(name):
+    if name == 'Emma':
+        return ['rgba(220,220,220,0.2)', 'rgba(220,220,220,1)']
+    elif name == 'Miguel':
+        return ['rgba(205, 145, 44, 0.8)', 'rgba(205, 145, 44, 1)']
+    elif name == 'Abraham':
+        return ['rgba(35, 76, 141, 0.8)', 'rgba(35, 76, 141, 1)']
+    else:
+        return ['rgba(215, 40, 40, 0.9)', 'rgba(215, 40, 40, 1)']
 
 def diffStatus(a, b):
     return a - b
