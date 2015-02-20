@@ -19,13 +19,31 @@ def status(request, pig_id):
 def graphData(request):
 
     if request.is_ajax():
-        # do whatever processing you need
-        # user.some_property = whatever
 
-        # send back whatever properties you have updated
-        json_response = {'user': {'some_property': 'Abraham :)'}}
+        response_list = []
+        pigs_list = PigData.objects.all()
 
-        return HttpResponse(json.dumps(json_response),
+        for pig in pigs_list:
+
+            response_data = {}
+            response_data['label'] = pig.Name
+            response_data['fillColor'] = 'rgba(220,220,220,0.2)'
+            response_data['strokeColor'] = 'rgba(220,220,220,1)'
+            response_data['pointColor'] = 'rgba(220,220,220,1)'
+            response_data['pointStrokeColor'] = '#fff'
+            response_data['pointHighlightFill'] = '#fff'
+            response_data['pointHighlightStroke'] = 'rgba(220,220,220,1)'
+
+            fat = []
+            pig_status = pig.pigstatus_set.all()
+            for ps in pig_status:
+                fat.append(ps.fat_percentage)
+
+            response_data['data'] = fat
+
+            response_list.append(response_data)
+
+        return HttpResponse(json.dumps(response_list),
             content_type='application/json')
 
     return render(request, 'index.html', {'user': ''})
@@ -58,8 +76,8 @@ def masterPigList(pigs_list):
             master_pig.week = pig_status[cnt-1].week
 
         if cnt > 1:
-            stst2 = pig_status[cnt-2]
-            stst1 = pig_status[cnt-1]
+            stst1 = pig_status[cnt-2]
+            stst2 = pig_status[cnt-1]
             master_pig.weight_diff = diffStatus(stst2.weight, stst1.weight)
             master_pig.fat_percentage_diff = diffStatus(stst2.fat_percentage, stst1.fat_percentage)
             master_pig.total_body_water_diff = diffStatus(stst2.total_body_water, stst1.total_body_water)

@@ -167,9 +167,9 @@
                           <div class="col-md-5 text-right">{{ pig.weight }}</div>
                           <div class="col-md-4 text-right">
                             {% if pig.weight_diff >= 0 %}
-                              <strong class="text-success">+{{ pig.weight_diff }}</strong>
+                              <strong class="text-danger">+{{ pig.weight_diff }}</strong>
                             {% else %}
-                              <strong class="text-danger">{{ pig.weight_diff }}</strong>
+                              <strong class="text-success">{{ pig.weight_diff }}</strong>
                             {% endif %}
                           </div>
                         </div>
@@ -179,9 +179,9 @@
                           <div class="col-md-5 text-right">{{ pig.fat_percentage }}</div>
                           <div class="col-md-4 text-right">
                             {% if pig.fat_percentage_diff >= 0 %}
-                              <strong class="text-success">+{{ pig.fat_percentage_diff }}</strong>
+                              <strong class="text-danger">+{{ pig.fat_percentage_diff }}</strong>
                             {% else %}
-                              <strong class="text-danger">{{ pig.fat_percentage_diff }}</strong>
+                              <strong class="text-success">{{ pig.fat_percentage_diff }}</strong>
                             {% endif %}
                           </div>
                         </div>
@@ -227,9 +227,9 @@
                           <div class="col-md-5 text-right">{{ pig.muscle_percentage }}</div>
                           <div class="col-md-4 text-right">
                             {% if pig.muscle_percentage_diff >= 0 %}
-                              <strong class="text-success">+{{ pig.muscle_percentage_diff }}</strong>
+                              <strong class="text-danger">+{{ pig.muscle_percentage_diff }}</strong>
                             {% else %}
-                              <strong class="text-danger">{{ pig.muscle_percentage_diff }}</strong>
+                              <strong class="text-success">{{ pig.muscle_percentage_diff }}</strong>
                             {% endif %}
                           </div>
                         </div>
@@ -239,9 +239,9 @@
                           <div class="col-md-5 text-right">{{ pig.kilocalories }}</div>
                           <div class="col-md-4 text-right">
                             {% if pig.kilocalories_diff >= 0 %}
-                              <strong class="text-success">+{{ pig.kilocalories_diff }}</strong>
+                              <strong class="text-danger">+{{ pig.kilocalories_diff }}</strong>
                             {% else %}
-                              <strong class="text-danger">{{ pig.kilocalories_diff }}</strong>
+                              <strong class="text-success">{{ pig.kilocalories_diff }}</strong>
                             {% endif %}
                           </div>
                         </div>
