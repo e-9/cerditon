@@ -67,11 +67,27 @@
       <div class="row">
         <div class="col-md-6 col-md-offset-3 text-left">
           <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Los criterios de medici&oacute;n son: <strong>Grasa, Peso y Masa Muscular</strong></li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item">El <strong>ganador</strong> escoger&aacute; la pel&iacute;cula y recibir&aacute; una recompensa por su esfuerzo. (<a href="https://www.youtube.com/watch?v=QN_y1VZ25Sw" target="_blank"><span class="glyphicon glyphicon-usd"></span></a>) </li>
+            <li class="list-group-item">El <strong>perdedor</strong> m&aacute;s perdedor, pagar&aacute; el <strong>50%</strong> del total consumido en el cine</li>
+            <li class="list-group-item">El <strong>perdedor</strong> casi super perdedor, pagar&aacute; el <strong>30%</strong> del total consumido en el cine</li>
+            <li class="list-group-item">El <strong>perdedor</strong> no tan perdedor pero a&uacute;n perdedor, pagar&aacute; el <strong>20%</strong> del total consumido en el cine</li>
+            <li class="list-group-item">Los <strong>otros</strong> Aportar&aacute;n <strong>250</strong> pesos que se le entregar&aacute;n al ganador</li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Bajar grasa -> Top 3</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Subir masa muscular -> Top 3</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Bajar peso por perdida de grasa -> Top 3</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Mantener peso ideal</span></li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"> No bajar grasa</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"> Bajar masa muscular</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"> Subir peso sin bajar grasa</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"> Subir peso sin subir masa muscular</span></li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item">Se puede canjear una "paloma" para no hacer un set de ejercicios</li>
+            <li class="list-group-item">Semana completa de set de ejerciocios equivale a <span class="glyphicon glyphicon-thumbs-up" /></li>
+            <li class="list-group-item">Qui&eacute;n abandone la competencia antes de tiempo se convierte en el perdedor absoluto</li>
           </ul>
         </div>
         </div>
@@ -271,7 +287,30 @@
       </div>
       <div class="row crdtn-row-pad">
         <div class="col-md-12">
-          <canvas id="myChart" width="900" height="400"></canvas>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+
+          <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" class="active"><a href="#weight" aria-controls="home" role="tab" data-toggle="tab">Peso</a></li>
+            <li role="presentation"><a href="#fat" aria-controls="profile" role="tab" data-toggle="tab">Grasa</a></li>
+            <li role="presentation"><a href="#muscle" aria-controls="messages" role="tab" data-toggle="tab">M&uacute;sculo</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="weight">
+              <canvas id="weightChart" width="900" height="400"></canvas>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="fat">
+              <canvas id="fatChart" width="900" height="400"></canvas>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="muscle">
+              <canvas id="muscleChart" width="900" height="400"></canvas>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -283,5 +322,6 @@
   <script src="{% static "cerdoton_app/bootstrap-3.3.2-dist/js/bootstrap.min.js" %}" ></script>
   <script src="{% static "cerdoton_app/js/Chart.min.js" %}" ></script>
   <script src="{% static "cerdoton_app/js/cerdoton.js" %}" ></script>
+
 </body>
 </html>

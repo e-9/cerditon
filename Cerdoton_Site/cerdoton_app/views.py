@@ -48,6 +48,70 @@ def graphDataFat(request):
 
     return render(request, 'index.html', {'user': ''})
 
+def graphDataWeight(request):
+
+    if request.is_ajax():
+
+        response_list = []
+        pigs_list = PigData.objects.all()
+
+        for pig in pigs_list:
+
+            response_data = {}
+            response_data['label'] = pig.Name
+            response_data['fillColor'] = colorGraph(pig.Name)[0]
+            response_data['strokeColor'] = colorGraph(pig.Name)[1]
+            response_data['pointColor'] = 'rgba(220,220,220,1)'
+            response_data['pointStrokeColor'] = '#fff'
+            response_data['pointHighlightFill'] = '#fff'
+            response_data['pointHighlightStroke'] = 'rgba(220,220,220,1)'
+
+            wght = []
+            pig_status = pig.pigstatus_set.all()
+            for ps in pig_status:
+                wght.append(ps.weight)
+
+            response_data['data'] = wght
+
+            response_list.append(response_data)
+
+        return HttpResponse(json.dumps(response_list),
+            content_type='application/json')
+
+    return render(request, 'index.html', {'user': ''})
+
+def graphDataMuscle(request):
+
+    if request.is_ajax():
+
+        response_list = []
+        pigs_list = PigData.objects.all()
+
+        for pig in pigs_list:
+
+            response_data = {}
+            response_data['label'] = pig.Name
+            response_data['fillColor'] = colorGraph(pig.Name)[0]
+            response_data['strokeColor'] = colorGraph(pig.Name)[1]
+            response_data['pointColor'] = 'rgba(220,220,220,1)'
+            response_data['pointStrokeColor'] = '#fff'
+            response_data['pointHighlightFill'] = '#fff'
+            response_data['pointHighlightStroke'] = 'rgba(220,220,220,1)'
+
+            mscl = []
+            pig_status = pig.pigstatus_set.all()
+            for ps in pig_status:
+                mscl.append(ps.body_mass_index)
+
+            response_data['data'] = mscl
+
+            response_list.append(response_data)
+
+        return HttpResponse(json.dumps(response_list),
+            content_type='application/json')
+
+    return render(request, 'index.html', {'user': ''})
+
 
 def colorGraph(name):
     if name == 'Emma':
