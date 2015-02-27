@@ -29,10 +29,10 @@ def graphDataFat(request):
             response_data['label'] = pig.Name
             response_data['fillColor'] = colorGraph(pig.Name)[0]
             response_data['strokeColor'] = colorGraph(pig.Name)[1]
-            response_data['pointColor'] = 'rgba(220,220,220,1)'
+            response_data['pointColor'] = colorGraph(pig.Name)[0]
             response_data['pointStrokeColor'] = '#fff'
             response_data['pointHighlightFill'] = '#fff'
-            response_data['pointHighlightStroke'] = 'rgba(220,220,220,1)'
+            response_data['pointHighlightStroke'] = colorGraph(pig.Name)[0]
 
             fat = []
             pig_status = pig.pigstatus_set.all()
@@ -61,10 +61,10 @@ def graphDataWeight(request):
             response_data['label'] = pig.Name
             response_data['fillColor'] = colorGraph(pig.Name)[0]
             response_data['strokeColor'] = colorGraph(pig.Name)[1]
-            response_data['pointColor'] = 'rgba(220,220,220,1)'
+            response_data['pointColor'] = colorGraph(pig.Name)[0]
             response_data['pointStrokeColor'] = '#fff'
             response_data['pointHighlightFill'] = '#fff'
-            response_data['pointHighlightStroke'] = 'rgba(220,220,220,1)'
+            response_data['pointHighlightStroke'] = colorGraph(pig.Name)[0]
 
             wght = []
             pig_status = pig.pigstatus_set.all()
@@ -93,10 +93,10 @@ def graphDataMuscle(request):
             response_data['label'] = pig.Name
             response_data['fillColor'] = colorGraph(pig.Name)[0]
             response_data['strokeColor'] = colorGraph(pig.Name)[1]
-            response_data['pointColor'] = 'rgba(220,220,220,1)'
+            response_data['pointColor'] = colorGraph(pig.Name)[0]
             response_data['pointStrokeColor'] = '#fff'
             response_data['pointHighlightFill'] = '#fff'
-            response_data['pointHighlightStroke'] = 'rgba(220,220,220,1)'
+            response_data['pointHighlightStroke'] = colorGraph(pig.Name)[0]
 
             mscl = []
             pig_status = pig.pigstatus_set.all()
@@ -120,6 +120,20 @@ def colorGraph(name):
         return ['rgba(205, 145, 44, 0.8)', 'rgba(205, 145, 44, 1)']
     elif name == 'Abraham':
         return ['rgba(35, 76, 141, 0.8)', 'rgba(35, 76, 141, 1)']
+    elif name == 'Israel':
+        return ['rgba(0, 14, 0, 0.9)', 'rgba(0, 14, 0, 1)']
+    elif name == 'Mario':
+        return ['rgba(0, 14, 58, 0.9)', 'rgba(0, 14, 58, 1)']
+    elif name == 'Guillermo':
+        return ['rgba(0, 70, 255, 0.9)', 'rgba(0, 70, 255, 1)']
+    elif name == 'David':
+        return ['rgba(0, 82, 76, 0.9)', 'rgba(0, 82, 76, 1)']
+    elif name == 'Alejandra':
+        return ['rgba(139, 82, 76, 0.9)', 'rgba(139, 82, 76, 1)']
+    elif name == 'Yosadara':
+        return ['rgba(139, 20, 76, 0.9)', 'rgba(139, 20, 76, 1)']
+    elif name == 'Erick':
+        return ['rgba(139, 20, 6, 0.9)', 'rgba(139, 20, 6, 1)']
     else:
         return ['rgba(215, 40, 40, 0.9)', 'rgba(215, 40, 40, 1)']
 

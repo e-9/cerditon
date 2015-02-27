@@ -73,7 +73,7 @@
             <li class="list-group-item">El <strong>perdedor</strong> m&aacute;s perdedor, pagar&aacute; el <strong>50%</strong> del total consumido en el cine</li>
             <li class="list-group-item">El <strong>perdedor</strong> casi super perdedor, pagar&aacute; el <strong>30%</strong> del total consumido en el cine</li>
             <li class="list-group-item">El <strong>perdedor</strong> no tan perdedor pero a&uacute;n perdedor, pagar&aacute; el <strong>20%</strong> del total consumido en el cine</li>
-            <li class="list-group-item">Los <strong>otros</strong> Aportar&aacute;n <strong>250</strong> pesos que se le entregar&aacute;n al ganador</li>
+            <li class="list-group-item">Los <strong>"otros"</strong> Aportar&aacute;n <strong>250</strong> pesos que se le entregar&aacute;n al ganador</li>
             <li class="list-group-item"></li>
             <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Bajar grasa -> Top 3</span></li>
             <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Subir masa muscular -> Top 3</span></li>
@@ -204,24 +204,24 @@
                       </td>
                       <td>
                         <div class="row">
-                          <div class="col-md-5 text-right">{{ pig.total_body_water }}</div>
-                          <div class="col-md-4 text-right">
-                            {% if pig.total_body_water_diff >= 0 %}
-                              <strong class="text-success">+{{ pig.total_body_water_diff }}</strong>
-                            {% else %}
-                              <strong class="text-danger">{{ pig.total_body_water_diff }}</strong>
-                            {% endif %}
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="row">
                           <div class="col-md-5 text-right">{{ pig.body_mass_index }}</div>
                           <div class="col-md-4 text-right">
                             {% if pig.body_mass_index_diff >= 0 %}
                               <strong class="text-success">+{{ pig.body_mass_index_diff }}</strong>
                             {% else %}
                               <strong class="text-danger">{{ pig.body_mass_index_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.total_body_water }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.total_body_water_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.total_body_water_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.total_body_water_diff }}</strong>
                             {% endif %}
                           </div>
                         </div>
@@ -291,7 +291,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
 
           <ul class="nav nav-tabs" role="tablist" id="myTab">
             <li role="presentation" class="active"><a href="#weight" aria-controls="home" role="tab" data-toggle="tab">Peso</a></li>
@@ -311,6 +311,9 @@
             </div>
           </div>
 
+        </div>
+        <div class="col-md-3">
+          abc
         </div>
       </div>
     </div>
