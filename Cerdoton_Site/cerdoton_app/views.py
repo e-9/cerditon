@@ -173,6 +173,25 @@ def masterPigList(pigs_list):
             master_pig.muscle_percentage_diff = diffStatus(stst2.muscle_percentage, stst1.muscle_percentage)
             master_pig.kilocalories_diff = diffStatus(stst2.kilocalories, stst1.kilocalories)
 
+        for i in xrange(1,cnt):
+            # Thumbs Up Bajar grasa
+            if diffStatus(pig_status[i].fat_percentage, pig_status[i-1].fat_percentage) < 0:
+                master_pig.thumbs_up += 1
+
+            # Thumbs Up Subir masa muscular
+            if diffStatus(pig_status[i].body_mass_index, pig_status[i-1].body_mass_index) > 0:
+                master_pig.thumbs_up += 1
+
+            # Thumbs Up Bajar peso por perdida de grasa
+            if diffStatus(pig_status[i].weight, pig_status[i-1].weight) < 0 and diffStatus(pig_status[i].fat_percentage, pig_status[i-1].fat_percentage) < 0:
+                master_pig.thumbs_up += 1
+
+            # Thumbs Up Peso ideal
+            if pig_status[i].weight <= pig_status[0].weight:
+                master_pig.thumbs_up += 1
+
+        print(master_pig.name, master_pig.thumbs_up)
+
         result.append(master_pig)
 
     return result

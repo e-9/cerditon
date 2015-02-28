@@ -40,6 +40,8 @@ class MasterPig():
     muscle_percentage_diff = 0.0
     kilocalories = 0.0
     kilocalories_diff = 0.0
+    thumbs_up = 0
+    thumbs_down = 0
     week = 0
 
     def __init__(self):
