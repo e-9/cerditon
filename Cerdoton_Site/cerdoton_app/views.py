@@ -29,10 +29,10 @@ def graphDataFat(request):
             response_data['label'] = pig.Name
             response_data['fillColor'] = colorGraph(pig.Name)[0]
             response_data['strokeColor'] = colorGraph(pig.Name)[1]
-            response_data['pointColor'] = 'rgba(220,220,220,1)'
+            response_data['pointColor'] = colorGraph(pig.Name)[0]
             response_data['pointStrokeColor'] = '#fff'
             response_data['pointHighlightFill'] = '#fff'
-            response_data['pointHighlightStroke'] = 'rgba(220,220,220,1)'
+            response_data['pointHighlightStroke'] = colorGraph(pig.Name)[0]
 
             fat = []
             pig_status = pig.pigstatus_set.all()
@@ -40,6 +40,70 @@ def graphDataFat(request):
                 fat.append(ps.fat_percentage)
 
             response_data['data'] = fat
+
+            response_list.append(response_data)
+
+        return HttpResponse(json.dumps(response_list),
+            content_type='application/json')
+
+    return render(request, 'index.html', {'user': ''})
+
+def graphDataWeight(request):
+
+    if request.is_ajax():
+
+        response_list = []
+        pigs_list = PigData.objects.all()
+
+        for pig in pigs_list:
+
+            response_data = {}
+            response_data['label'] = pig.Name
+            response_data['fillColor'] = colorGraph(pig.Name)[0]
+            response_data['strokeColor'] = colorGraph(pig.Name)[1]
+            response_data['pointColor'] = colorGraph(pig.Name)[0]
+            response_data['pointStrokeColor'] = '#fff'
+            response_data['pointHighlightFill'] = '#fff'
+            response_data['pointHighlightStroke'] = colorGraph(pig.Name)[0]
+
+            wght = []
+            pig_status = pig.pigstatus_set.all()
+            for ps in pig_status:
+                wght.append(ps.weight)
+
+            response_data['data'] = wght
+
+            response_list.append(response_data)
+
+        return HttpResponse(json.dumps(response_list),
+            content_type='application/json')
+
+    return render(request, 'index.html', {'user': ''})
+
+def graphDataMuscle(request):
+
+    if request.is_ajax():
+
+        response_list = []
+        pigs_list = PigData.objects.all()
+
+        for pig in pigs_list:
+
+            response_data = {}
+            response_data['label'] = pig.Name
+            response_data['fillColor'] = colorGraph(pig.Name)[0]
+            response_data['strokeColor'] = colorGraph(pig.Name)[1]
+            response_data['pointColor'] = colorGraph(pig.Name)[0]
+            response_data['pointStrokeColor'] = '#fff'
+            response_data['pointHighlightFill'] = '#fff'
+            response_data['pointHighlightStroke'] = colorGraph(pig.Name)[0]
+
+            mscl = []
+            pig_status = pig.pigstatus_set.all()
+            for ps in pig_status:
+                mscl.append(ps.body_mass_index)
+
+            response_data['data'] = mscl
 
             response_list.append(response_data)
 
@@ -56,6 +120,20 @@ def colorGraph(name):
         return ['rgba(205, 145, 44, 0.8)', 'rgba(205, 145, 44, 1)']
     elif name == 'Abraham':
         return ['rgba(35, 76, 141, 0.8)', 'rgba(35, 76, 141, 1)']
+    elif name == 'Israel':
+        return ['rgba(0, 14, 0, 0.9)', 'rgba(0, 14, 0, 1)']
+    elif name == 'Mario':
+        return ['rgba(0, 14, 58, 0.9)', 'rgba(0, 14, 58, 1)']
+    elif name == 'Guillermo':
+        return ['rgba(0, 70, 255, 0.9)', 'rgba(0, 70, 255, 1)']
+    elif name == 'David':
+        return ['rgba(0, 82, 76, 0.9)', 'rgba(0, 82, 76, 1)']
+    elif name == 'Alejandra':
+        return ['rgba(139, 82, 76, 0.9)', 'rgba(139, 82, 76, 1)']
+    elif name == 'Yosadara':
+        return ['rgba(139, 20, 76, 0.9)', 'rgba(139, 20, 76, 1)']
+    elif name == 'Erick':
+        return ['rgba(139, 20, 6, 0.9)', 'rgba(139, 20, 6, 1)']
     else:
         return ['rgba(215, 40, 40, 0.9)', 'rgba(215, 40, 40, 1)']
 

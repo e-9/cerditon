@@ -67,11 +67,27 @@
       <div class="row">
         <div class="col-md-6 col-md-offset-3 text-left">
           <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Los criterios de medici&oacute;n son: <strong>Grasa, Peso y Masa Muscular</strong></li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item">El <strong>ganador</strong> escoger&aacute; la pel&iacute;cula y recibir&aacute; una recompensa por su esfuerzo. (<a href="https://www.youtube.com/watch?v=QN_y1VZ25Sw" target="_blank"><span class="glyphicon glyphicon-usd"></span></a>) </li>
+            <li class="list-group-item">El <strong>perdedor</strong> m&aacute;s perdedor, pagar&aacute; el <strong>50%</strong> del total consumido en el cine</li>
+            <li class="list-group-item">El <strong>perdedor</strong> casi super perdedor, pagar&aacute; el <strong>30%</strong> del total consumido en el cine</li>
+            <li class="list-group-item">El <strong>perdedor</strong> no tan perdedor pero a&uacute;n perdedor, pagar&aacute; el <strong>20%</strong> del total consumido en el cine</li>
+            <li class="list-group-item">Los <strong>"otros"</strong> Aportar&aacute;n <strong>250</strong> pesos que se le entregar&aacute;n al ganador</li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Bajar grasa -> Top 3</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Subir masa muscular -> Top 3</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Bajar peso por perdida de grasa -> Top 3</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"> Mantener peso ideal</span></li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"> No bajar grasa</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"> Bajar masa muscular</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"> Subir peso sin bajar grasa</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"> Subir peso sin subir masa muscular</span></li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item">Se puede canjear una "paloma" para no hacer un set de ejercicios</li>
+            <li class="list-group-item">Semana completa de set de ejerciocios equivale a <span class="glyphicon glyphicon-thumbs-up" /></li>
+            <li class="list-group-item">Qui&eacute;n abandone la competencia antes de tiempo se convierte en el perdedor absoluto</li>
           </ul>
         </div>
         </div>
@@ -188,24 +204,24 @@
                       </td>
                       <td>
                         <div class="row">
-                          <div class="col-md-5 text-right">{{ pig.total_body_water }}</div>
-                          <div class="col-md-4 text-right">
-                            {% if pig.total_body_water_diff >= 0 %}
-                              <strong class="text-success">+{{ pig.total_body_water_diff }}</strong>
-                            {% else %}
-                              <strong class="text-danger">{{ pig.total_body_water_diff }}</strong>
-                            {% endif %}
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="row">
                           <div class="col-md-5 text-right">{{ pig.body_mass_index }}</div>
                           <div class="col-md-4 text-right">
                             {% if pig.body_mass_index_diff >= 0 %}
                               <strong class="text-success">+{{ pig.body_mass_index_diff }}</strong>
                             {% else %}
                               <strong class="text-danger">{{ pig.body_mass_index_diff }}</strong>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-5 text-right">{{ pig.total_body_water }}</div>
+                          <div class="col-md-4 text-right">
+                            {% if pig.total_body_water_diff >= 0 %}
+                              <strong class="text-success">+{{ pig.total_body_water_diff }}</strong>
+                            {% else %}
+                              <strong class="text-danger">{{ pig.total_body_water_diff }}</strong>
                             {% endif %}
                           </div>
                         </div>
@@ -271,7 +287,72 @@
       </div>
       <div class="row crdtn-row-pad">
         <div class="col-md-12">
-          <canvas id="myChart" width="900" height="400"></canvas>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+
+          <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" class="active"><a href="#weight" aria-controls="home" role="tab" data-toggle="tab">Peso</a></li>
+            <li role="presentation"><a href="#fat" aria-controls="profile" role="tab" data-toggle="tab">Grasa</a></li>
+            <li role="presentation"><a href="#muscle" aria-controls="messages" role="tab" data-toggle="tab">M&uacute;sculo</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="weight">
+              <canvas id="weightChart" width="900" height="400"></canvas>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="fat">
+              <canvas id="fatChart" width="900" height="400"></canvas>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="muscle">
+              <canvas id="muscleChart" width="900" height="400"></canvas>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <div class="row crdtn-row-pad">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 text-left" style=" background: rgba(35, 76, 141, 0.8); color: white;">Abraham</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 text-left" style=" background: rgba(139, 82, 76, 0.9); color: white;">Alejandra</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1" ></div>
+            <div class="col-md-11 text-left" style=" background: rgba(0, 82, 76, 0.9); color: white;">David</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1" ></div>
+            <div class="col-md-11 text-left" style=" background: rgba(220,220,220,0.2);">Emma</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 text-left" style=" background: rgba(139, 20, 6, 0.9); color: white;">Erick</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 text-left" style=" background: rgba(0, 70, 255, 0.9); color: white;">Guillermo</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 text-left" style=" background: rgba(0, 14, 0, 0.9); color: white;">Israel</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 text-left" style=" background: rgba(0, 14, 58, 0.9); color: white;">Mario</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 text-left" style=" background: rgba(205, 145, 44, 0.8); color: white;">Miguel</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 text-left" style=" background: rgba(139, 20, 76, 0.9); color: white;">Yosadara</div>
+          </div>
         </div>
       </div>
     </div>
@@ -283,5 +364,6 @@
   <script src="{% static "cerdoton_app/bootstrap-3.3.2-dist/js/bootstrap.min.js" %}" ></script>
   <script src="{% static "cerdoton_app/js/Chart.min.js" %}" ></script>
   <script src="{% static "cerdoton_app/js/cerdoton.js" %}" ></script>
+
 </body>
 </html>
