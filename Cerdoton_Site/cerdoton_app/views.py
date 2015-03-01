@@ -140,6 +140,9 @@ def colorGraph(name):
 def diffStatus(a, b):
     return a - b
 
+def getKey(master_pig):
+    return master_pig.thumbs_up
+
 def masterPigList(pigs_list):
     result = []
 
@@ -178,20 +181,31 @@ def masterPigList(pigs_list):
             if diffStatus(pig_status[i].fat_percentage, pig_status[i-1].fat_percentage) < 0:
                 master_pig.thumbs_up += 1
 
+                # Thumbs Up Bajar peso por perdida de grasa
+                if diffStatus(pig_status[i].weight, pig_status[i-1].weight) < 0:
+                    master_pig.thumbs_up += 1
+
             # Thumbs Up Subir masa muscular
             if diffStatus(pig_status[i].body_mass_index, pig_status[i-1].body_mass_index) > 0:
                 master_pig.thumbs_up += 1
 
-            # Thumbs Up Bajar peso por perdida de grasa
-            if diffStatus(pig_status[i].weight, pig_status[i-1].weight) < 0 and diffStatus(pig_status[i].fat_percentage, pig_status[i-1].fat_percentage) < 0:
-                master_pig.thumbs_up += 1
-
             # Thumbs Up Peso ideal
-            if pig_status[i].weight <= pig_status[0].weight:
+            if pig_status[i].weight <= pig_status[0].ideal_weight:
                 master_pig.thumbs_up += 1
 
-        print(master_pig.name, master_pig.thumbs_up)
+            # Thumbs Down grasa
+            if diffStatus(pig_status[i].fat_percentage, pig_status[i-1].fat_percentage) >= 0:
+                master_pig.thumbs_down += 1
+
+                # Thumbs Down subir peso
+                if diffStatus(pig_status[i].weight, pig_status[i-1].weight) > 0:
+                    master_pig.thumbs_down += 1
+
+            # Thumbs Down masa muscular
+            if diffStatus(pig_status[i].body_mass_index, pig_status[i-1].body_mass_index) < 0:
+                master_pig.thumbs_down += 1
 
         result.append(master_pig)
 
-    return result
+    sortedList = sorted(result, key=getKey, reverse=True)
+    return sortedList
