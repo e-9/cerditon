@@ -115,33 +115,30 @@ def graphDataMuscle(request):
 
 def colorGraph(name):
     if name == 'Emma':
-        return ['rgba(220,220,220,0.2)', 'rgba(220,220,220,1)']
+        return ['rgba(255, 102, 187, 0.9)', 'rgba(255, 102, 187, 1)']
     elif name == 'Miguel':
-        return ['rgba(205, 145, 44, 0.8)', 'rgba(205, 145, 44, 1)']
+        return ['rgba(231, 193, 137, 0.8)', 'rgba(231, 193, 137, 1)']
     elif name == 'Abraham':
         return ['rgba(35, 76, 141, 0.8)', 'rgba(35, 76, 141, 1)']
     elif name == 'Israel':
-        return ['rgba(0, 14, 0, 0.9)', 'rgba(0, 14, 0, 1)']
+        return ['rgba(0, 117, 0, 0.9)', 'rgba(0, 117, 0, 1)']
     elif name == 'Mario':
-        return ['rgba(0, 14, 58, 0.9)', 'rgba(0, 14, 58, 1)']
+        return ['rgba(243, 202, 7, 0.9)', 'rgba(243, 202, 7, 1)']
     elif name == 'Guillermo':
         return ['rgba(0, 70, 255, 0.9)', 'rgba(0, 70, 255, 1)']
     elif name == 'David':
-        return ['rgba(0, 82, 76, 0.9)', 'rgba(0, 82, 76, 1)']
+        return ['rgba(70, 225, 39, 0.9)', 'rgba(70, 225, 39, 1)']
     elif name == 'Alejandra':
-        return ['rgba(139, 82, 76, 0.9)', 'rgba(139, 82, 76, 1)']
+        return ['rgba(235, 103, 41, 0.9)', 'rgba(235, 103, 41, 1)']
     elif name == 'Yosadara':
         return ['rgba(139, 20, 76, 0.9)', 'rgba(139, 20, 76, 1)']
     elif name == 'Erick':
-        return ['rgba(139, 20, 6, 0.9)', 'rgba(139, 20, 6, 1)']
+        return ['rgba(251, 36, 11, 0.9)', 'rgba(251, 36, 11, 1)']
     else:
         return ['rgba(215, 40, 40, 0.9)', 'rgba(215, 40, 40, 1)']
 
 def diffStatus(a, b):
     return a - b
-
-def getKey(master_pig):
-    return master_pig.thumbs_up
 
 def masterPigList(pigs_list):
     result = []
@@ -176,36 +173,6 @@ def masterPigList(pigs_list):
             master_pig.muscle_percentage_diff = diffStatus(stst2.muscle_percentage, stst1.muscle_percentage)
             master_pig.kilocalories_diff = diffStatus(stst2.kilocalories, stst1.kilocalories)
 
-        for i in xrange(1,cnt):
-            # Thumbs Up Bajar grasa
-            if diffStatus(pig_status[i].fat_percentage, pig_status[i-1].fat_percentage) < 0:
-                master_pig.thumbs_up += 1
-
-                # Thumbs Up Bajar peso por perdida de grasa
-                if diffStatus(pig_status[i].weight, pig_status[i-1].weight) < 0:
-                    master_pig.thumbs_up += 1
-
-            # Thumbs Up Subir masa muscular
-            if diffStatus(pig_status[i].body_mass_index, pig_status[i-1].body_mass_index) > 0:
-                master_pig.thumbs_up += 1
-
-            # Thumbs Up Peso ideal
-            if pig_status[i].weight <= pig_status[0].ideal_weight:
-                master_pig.thumbs_up += 1
-
-            # Thumbs Down grasa
-            if diffStatus(pig_status[i].fat_percentage, pig_status[i-1].fat_percentage) >= 0:
-                master_pig.thumbs_down += 1
-
-                # Thumbs Down subir peso
-                if diffStatus(pig_status[i].weight, pig_status[i-1].weight) > 0:
-                    master_pig.thumbs_down += 1
-
-            # Thumbs Down masa muscular
-            if diffStatus(pig_status[i].body_mass_index, pig_status[i-1].body_mass_index) < 0:
-                master_pig.thumbs_down += 1
-
         result.append(master_pig)
 
-    sortedList = sorted(result, key=getKey, reverse=True)
-    return sortedList
+    return result
