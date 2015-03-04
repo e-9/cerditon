@@ -1,9 +1,17 @@
 $( document ).ready(function() {
 
+  function compare(a,b) {
+    if (a.label < b.label)
+       return -1;
+    if (a.label > b.label)
+      return 1;
+    return 0;
+  }
+
   var labelArray = ["Inicio", "Semana 1", "Semana 2", "Semana 3", "Semana 4", "Semana 5", "Semana 6", "Semana 7", "Semana 8"];
 
   $.get('/cerdoton/graphData/weight/', function(data) {
-        console.log(data);
+        data.sort(compare);
 
         var data = {
           labels: labelArray,
@@ -21,7 +29,7 @@ $( document ).ready(function() {
     if ($(this).text() === "Peso")
     {
       $.get('/cerdoton/graphData/weight/', function(data) {
-            console.log(data);
+            data.sort(compare);
 
             var data = {
               labels: labelArray,
@@ -36,7 +44,7 @@ $( document ).ready(function() {
     else if ($(this).text() === "Grasa")
     {
       $.get('/cerdoton/graphData/fat/', function(data) {
-            console.log(data);
+            data.sort(compare);
 
             var data = {
               labels: labelArray,
@@ -51,7 +59,7 @@ $( document ).ready(function() {
     else if ($(this).text() === "Músculo")
     {
       $.get('/cerdoton/graphData/muscle/', function(data) {
-            console.log(data);
+            data.sort(compare);
 
             var data = {
               labels: labelArray,
