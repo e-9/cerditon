@@ -12,6 +12,8 @@ $( document ).ready(function() {
 
   $.get('/cerdoton/graphData/weight/', function(data) {
         data.sort(compare);
+        console.log('--------------- PESO ------------------')
+        console.table(data)
 
         var data = {
           labels: labelArray,
@@ -30,6 +32,8 @@ $( document ).ready(function() {
     {
       $.get('/cerdoton/graphData/weight/', function(data) {
             data.sort(compare);
+            console.log('--------------- PESO ------------------')
+            console.table(data)
 
             var data = {
               labels: labelArray,
@@ -45,6 +49,8 @@ $( document ).ready(function() {
     {
       $.get('/cerdoton/graphData/fat/', function(data) {
             data.sort(compare);
+            console.log('--------------- GRASA ------------------')
+            console.table(data)
 
             var data = {
               labels: labelArray,
@@ -60,6 +66,8 @@ $( document ).ready(function() {
     {
       $.get('/cerdoton/graphData/muscle/', function(data) {
             data.sort(compare);
+            console.log('--------------- MUSCULO ------------------')
+            console.table(data)
 
             var data = {
               labels: labelArray,
