@@ -134,8 +134,6 @@ def colorGraph(name):
         return ['rgba(139, 20, 76, 0.9)', 'rgba(139, 20, 76, 1)']
     elif name == 'Erick':
         return ['rgba(251, 36, 11, 0.9)', 'rgba(251, 36, 11, 1)']
-    else:
-        return ['rgba(215, 40, 40, 0.9)', 'rgba(215, 40, 40, 1)']
 
 def diffStatus(a, b):
     return a - b

@@ -22,6 +22,14 @@ class PigStatus(models.Model):
     def __str__(self):
         return str(self.weight)
 
+class PigScore(models.Model):
+    pig_data = models.ForeignKey(PigData)
+    week = models.IntegerField('Semana', default=0)
+    thumbs_up = models.IntegerField('Paloma', default=0)
+    thumbs_down = models.IntegerField('Tache', default=0)
+    def __str__(self):
+        return str(self.week)
+
 class MasterPig():
     name = ''
     age = 0
