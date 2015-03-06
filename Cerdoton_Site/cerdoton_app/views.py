@@ -150,6 +150,10 @@ def masterPigList(pigs_list):
         master_pig.age = pig.Age
         master_pig.height = pig.Height
 
+        scores = getScores(pig)
+        master_pig.thumbs_up += scores[0]
+        master_pig.thumbs_down += scores[1]
+
         if cnt > 0:
             master_pig.weight = pig_status[cnt-1].weight
             master_pig.fat_percentage = pig_status[cnt-1].fat_percentage
@@ -192,14 +196,12 @@ def score(request):
         pigs_list = PigData.objects.all()
 
         for pig in pigs_list:
-            pig_scores = pig.pigscore_set.all()
-
             master_pig = MasterPig()
             master_pig.name = pig.Name
 
-            for score in pig_scores:
-                master_pig.thumbs_up += score.thumbs_up
-                master_pig.thumbs_down += score.thumbs_down
+            scores = getScores(pig)
+            master_pig.thumbs_up += scores[0]
+            master_pig.thumbs_down += scores[1]
 
             sort_me.append(master_pig)
 
@@ -214,10 +216,21 @@ def score(request):
         for i in xrange(0,3):
             response_data_down = {}
             response_data_down['name'] = sortedThumbsDown[i].name
-            response_data_down['up'] = sortedThumbsDown[i].thumbs_down
+            response_data_down['down'] = sortedThumbsDown[i].thumbs_down
             response_list.append(response_data_down)
 
         return HttpResponse(json.dumps(response_list),
             content_type='application/json')
 
     return render(request, 'index.html', {'user': ''})
+
+def getScores(pig):
+    pig_scores = pig.pigscore_set.all()
+    thumbs_up = 0
+    thumbs_down = 0
+
+    for score in pig_scores:
+        thumbs_up += score.thumbs_up
+        thumbs_down += score.thumbs_down
+
+    return [thumbs_up, thumbs_down]
