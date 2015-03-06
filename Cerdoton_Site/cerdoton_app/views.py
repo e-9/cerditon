@@ -173,4 +173,51 @@ def masterPigList(pigs_list):
 
         result.append(master_pig)
 
-    return result
+    return sorted(result, key=getKey)
+
+def getKey(master_pig):
+    return master_pig.name
+
+def getThumbsUp(master_pig):
+    return master_pig.thumbs_up
+
+def getThumbsDown(master_pig):
+    return master_pig.thumbs_down
+
+def score(request):
+    if request.is_ajax():
+
+        response_list = []
+        sort_me = []
+        pigs_list = PigData.objects.all()
+
+        for pig in pigs_list:
+            pig_scores = pig.pigscore_set.all()
+
+            master_pig = MasterPig()
+            master_pig.name = pig.Name
+
+            for score in pig_scores:
+                master_pig.thumbs_up += score.thumbs_up
+                master_pig.thumbs_down += score.thumbs_down
+
+            sort_me.append(master_pig)
+
+        sortedThumbsUp = sorted(sort_me, key=getThumbsUp, reverse=True)
+        for i in xrange(0,3):
+            response_data = {}
+            response_data['name'] = sortedThumbsUp[i].name
+            response_data['up'] = sortedThumbsUp[i].thumbs_up
+            response_list.append(response_data)
+
+        sortedThumbsDown = sorted(sort_me, key=getThumbsDown, reverse=True)
+        for i in xrange(0,3):
+            response_data_down = {}
+            response_data_down['name'] = sortedThumbsDown[i].name
+            response_data_down['up'] = sortedThumbsDown[i].thumbs_down
+            response_list.append(response_data_down)
+
+        return HttpResponse(json.dumps(response_list),
+            content_type='application/json')
+
+    return render(request, 'index.html', {'user': ''})

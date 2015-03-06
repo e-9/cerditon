@@ -25,6 +25,12 @@ $( document ).ready(function() {
 
   });
 
+  $.get('/cerdoton/score/', function(data) {
+        data.sort(compare);
+        console.log('--------------- SCORE ------------------')
+        console.table(data)
+  });
+
   $('#myTab a').click(function (e) {
     e.preventDefault()
 
