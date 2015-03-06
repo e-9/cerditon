@@ -29,6 +29,24 @@ $( document ).ready(function() {
         data.sort(compare);
         console.log('--------------- SCORE ------------------')
         console.table(data)
+
+        $('#namebest1').text(data[0].name);
+        $('#scorebest1').text(data[0].up);
+
+        $('#namebest2').text(data[1].name);
+        $('#scorebest2').text(data[1].up);
+
+        $('#namebest3').text(data[2].name);
+        $('#scorebest3').text(data[2].up);
+
+        $('#nameworst1').text(data[3].name);
+        $('#scoreworst1').text(data[3].down);
+
+        $('#nameworst2').text(data[4].name);
+        $('#scoreworst2').text(data[4].down);
+
+        $('#nameworst3').text(data[5].name);
+        $('#scoreworst3').text(data[5].down);
   });
 
   $('#myTab a').click(function (e) {
