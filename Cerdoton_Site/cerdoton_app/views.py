@@ -233,4 +233,4 @@ def getScores(pig):
         thumbs_up += score.thumbs_up
         thumbs_down += score.thumbs_down
 
-    return [thumbs_up, thumbs_down]
+    return [thumbs_up-thumbs_down, thumbs_down]
