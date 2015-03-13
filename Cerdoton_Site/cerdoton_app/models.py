@@ -51,6 +51,7 @@ class MasterPig():
     thumbs_up = 0
     thumbs_down = 0
     week = 0
+    ideal = 0
 
     def __init__(self):
         self.data = []

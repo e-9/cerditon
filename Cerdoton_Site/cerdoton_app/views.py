@@ -155,6 +155,7 @@ def masterPigList(pigs_list):
         master_pig.thumbs_down += scores[1]
 
         if cnt > 0:
+            master_pig.ideal = pig_status[0].ideal_weight
             master_pig.weight = pig_status[cnt-1].weight
             master_pig.fat_percentage = pig_status[cnt-1].fat_percentage
             master_pig.total_body_water = pig_status[cnt-1].total_body_water

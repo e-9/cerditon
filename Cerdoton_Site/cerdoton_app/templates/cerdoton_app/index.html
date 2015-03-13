@@ -184,7 +184,7 @@
                   {% if pigs_list %}
                   {% for pig in pigs_list %}
                   <tr>
-                    <td class="text-left">{{ pig.name }}</td>
+                    <td class="text-left">{{ pig.name }} <small><small>{{ pig.ideal }}</small></small></td>
                     <td>
                       <div class="row">
                         <div class="col-md-5 text-right">{{ pig.weight }}</div>
